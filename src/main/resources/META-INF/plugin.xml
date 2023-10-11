@@ -1,0 +1,51 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+  <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+  <id>com.github.sechols223.Capibara</id>
+
+  <!-- Public plugin name should be written in Title Case.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+  <name>Capibara</name>
+
+  <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+  <vendor email="samuelechols223@gmail.com" url="https://www.yourcompany.com">Capibara</vendor>
+
+  <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+       Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+  <description><![CDATA[
+    A plugin to interface with Capibara. whooohoooo<br>
+
+  ]]></description>
+
+  <!-- Product and plugin compatibility requirements.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <depends>com.intellij.modules.clion</depends>
+
+  <!-- Extension points defined by the plugin.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+  <extensions defaultExtensionNs="com.intellij" >
+    <lang.documentationProvider
+        language="ObjectiveC"
+        implementationClass="com.github.sechols223.capibara.core.CDocumentationProvider"
+    />
+    <lang.documentationProvider
+            language="C"
+            implementationClass="com.github.sechols223.capibara.core.CDocumentationProvider"
+    />
+
+    <postStartupActivity implementation="com.github.sechols223.capibara.core.PluginInitializer" />
+    <applicationConfigurable
+      instance="com.github.sechols223.capibara.config.PluginOptions"
+      displayName="Capibara Options"
+    />
+  </extensions>
+  <actions>
+      <action id="com.github.sechols223.capibara.core.DialogAction" class="com.github.sechols223.capibara.core.DialogAction"
+              text="Dialog Action" description="Action example">
+          <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      </action>
+  </actions>
+</idea-plugin>
